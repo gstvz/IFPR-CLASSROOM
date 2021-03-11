@@ -1,0 +1,7 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">	
+#04D361 cor verde
+#8257E5 cor roxa area-menu background
+#744ECD cor roxa para .botao-menu:hover
+#EBEBEB cor do body
+#EBEBEB cor do input
