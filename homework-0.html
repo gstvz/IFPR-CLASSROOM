@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarefas</title>
-    <link rel="stylesheet" href="styles/homework.css">
+    <link rel="stylesheet" href="styles/homework-0.css">
     <link rel="stylesheet" href="styles/painel.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">	
@@ -32,5 +32,46 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+    <div id="principal">
+
+        <div id="botao">
+            <a href="homework.html"><button class="roxo">Tarefas</button></a>
+            <a href="videos.html"><button>Vídeos</button></a>
+            <a href="subjects.html"><button>Matérias</button></a>
+            <a href="note.html"><button>Conceitos</button></a>
+        </div>
+        <div id="quadrado">
+            <div class="grid">
+                <div id="esquerda">
+                    <div id="title">
+                        <a href="homework.html" class="voltar"><img src="imagens/arrow.png" alt=""> <b>Voltar às tarefas</b></a>
+
+                        <h2 id="name-homework">Atividade X - Threads e funções em C++/C, binários e hexadecimais</h2>
+                        <p id="subject-homework">Robótica e sistemas embarcados - Prof. Gilson Kanashiro</p>
+                    </div>
+                    <div id="desc">
+                        <h3 id="description-homework">
+                            Descrição da atividade: Faça os exercícios pedidos no arquivo em anexo. Após fazer a lógica do programa, monte um esquema no Tinkercad com os componentes indicados no exercício e teste seu código, tire print do sistema funcionando e envie junto ao código no arquivo nomeado "Arquivo para devolver".
+                        </h3>
+                    </div>
+                    <div class="grid">
+                        <a href=""><div class="archive"><img src="imagens/mini-pdf.png" alt=""><b>Atividade 02 - Exercícios - 4</b></div></a>
+                    </div>
+                </div>
+                <div id="direita">
+                    <div id="date"><p>Data de envio: 01/01/2021 <br>Data de entrega: 10/02/2021</p><p>Situação: <span id="situation">Não entregue</span></p></div>
+                    <div id="file">
+                        <form action="">
+                            <div id="borda">
+                                <div id="format">
+                                    <input id="selecao-arquivo" type="file">
+                                </div>
+
+                            </div>
+                            <input type="submit" name="send-file" id="send-file" class="botao" value="Marcar como concluído">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
