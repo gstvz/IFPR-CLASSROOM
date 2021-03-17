@@ -63,10 +63,8 @@
                     <div id="file">
                         <form action="">
                             <div id="borda">
-                                <div id="format">
-                                    <input id="selecao-arquivo" type="file">
-                                </div>
-
+                                <label for="homework" class="send-archive">+ Adicionar arquivo</label>
+                                <input id="homework" name="homework" type="file" onchange="loadFile(event)">
                             </div>
                             <input type="submit" name="send-file" id="send-file" class="botao" value="Marcar como concluído">
                         </form>
@@ -75,3 +73,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function loadFile(event){
+            var borda = document.querySelector('#borda');
+            var span = document.createElement('span');
+            span.setAttribute('class', 'send-archive');
+
+            const file = event.target.files[0];
+            span.append(file.name);
+            borda.appendChild(span);
+        }
+    </script>
+
+</body>
