@@ -1,89 +1,92 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarefas</title>
-    <link rel="stylesheet" href="styles/homework-0.css">
-    <link rel="stylesheet" href="styles/painel.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">	
-</head>
-<body>
-    <div id="header">
-        <div class="head">
-            <div id="logo">
-                <a href="">
-                    <img src="imagens/logo.png" alt="">
-                </a>
-            </div>
-            <div id="menu">
-                <a href="">Home</a>
-                <a href=""><img src="imagens/mega fone.png" alt=""> Extra Aula</a>
-                <a href=""><img src="imagens/calendar.png" alt=""> Calendário</a>
-                <a href=""><img src="imagens/boletim.png" alt=""> Boletim</a>
-            </div>
-            <div id="perfil">
-                <span id="nome" class="branco">Gustavo França</span>
-                <span class="branco"> | </span>
-                <span id="turma" class="branco">4º Mecatrônica</span>
-                <img src="imagens/registerfoto.png" alt="">
-            </div>
-        </div>
-    </div>
-    <div id="principal">
+    {% extends "layout.html" %}
 
-        <div id="botao">
-            <a href="homework.html"><button class="roxo">Tarefas</button></a>
-            <a href="videos.html"><button>Vídeos</button></a>
-            <a href="subjects.html"><button>Matérias</button></a>
-            <a href="note.html"><button>Conceitos</button></a>
-        </div>
-        <div id="quadrado">
-            <div class="grid">
-                <div id="esquerda">
-                    <div id="title">
-                        <a href="homework.html" class="voltar"><img src="imagens/arrow.png" alt=""> <b>Voltar às tarefas</b></a>
+    {% block title %}
+        <title>Tarefas</title>
+    {% endblock title %}
 
-                        <h2 id="name-homework">Atividade X - Threads e funções em C++/C, binários e hexadecimais</h2>
-                        <p id="subject-homework">Robótica e sistemas embarcados - Prof. Gilson Kanashiro</p>
-                    </div>
-                    <div id="desc">
-                        <h3 id="description-homework">
-                            Descrição da atividade: Faça os exercícios pedidos no arquivo em anexo. Após fazer a lógica do programa, monte um esquema no Tinkercad com os componentes indicados no exercício e teste seu código, tire print do sistema funcionando e envie junto ao código no arquivo nomeado "Arquivo para devolver".
-                        </h3>
-                    </div>
-                    <div class="grid">
-                        <a href=""><div class="archive"><img src="imagens/mini-pdf.png" alt=""><b>Atividade 02 - Exercícios - 4</b></div></a>
-                    </div>
+    {% block styles %}
+        <link rel="stylesheet" type="text/css" href="/styles/homework-0.css">
+        <link rel="stylesheet" type="text/css" href="/styles/painel.css">
+    {% endblock styles %}
+
+    {% block header %}
+        <div id="header">
+            <div class="head">
+                <div id="logo">
+                    <a href="">
+                        <img src="/imagens/logo.png" alt="">
+                    </a>
                 </div>
-                <div id="direita">
-                    <div id="date"><p>Data de envio: 01/01/2021 <br>Data de entrega: 10/02/2021</p><p>Situação: <span id="situation">Não entregue</span></p></div>
-                    <div id="file">
-                        <form action="">
-                            <div id="borda">
-                                <label for="homework" class="send-archive">+ Adicionar arquivo</label>
-                                <input id="homework" name="homework" type="file" onchange="loadFile(event)">
-                            </div>
-                            <input type="submit" name="send-file" id="send-file" class="botao" value="Marcar como concluído">
-                        </form>
-                    </div>
+                <div id="menu">
+                    <a href="">Home</a>
+                    <a href=""><img src="/imagens/mega fone.png" alt=""> Extra Aula</a>
+                    <a href=""><img src="/imagens/calendar.png" alt=""> Calendário</a>
+                    <a href=""><img src="/imagens/boletim.png" alt=""> Boletim</a>
+                </div>
+                <div id="perfil">
+                    <span id="nome" class="branco">Gustavo França</span>
+                    <span class="branco"> | </span>
+                    <span id="turma" class="branco">4º Mecatrônica</span>
+                    <img src="/imagens/registerfoto.png" alt="">
                 </div>
             </div>
         </div>
-    </div>
+    {% endblock header %}
 
-    <script>
-        function loadFile(event){
-            var borda = document.querySelector('#borda');
-            var span = document.createElement('span');
-            span.setAttribute('class', 'send-archive');
+    {% block principal %}
+        <div id="principal">
 
-            const file = event.target.files[0];
-            span.append(file.name);
-            borda.appendChild(span);
-        }
-    </script>
+            <div id="botao">
+                <a href="/tarefas"><button class="roxo">Tarefas</button></a>
+                <a href="/videos"><button>Vídeos</button></a>
+                <a href="/materias"><button>Matérias</button></a>
+                <a href="/conceitos"><button>Conceitos</button></a>
+            </div>
+            <div id="quadrado">
+                <div class="grid">
+                    <div id="esquerda">
+                        <div id="title">
+                            <a href="/tarefas" class="voltar"><img src="/imagens/arrow.png" alt=""> <b>Voltar às tarefas</b></a>
 
-</body>
+                            <h2 id="name-homework">Atividade X - Threads e funções em C++/C, binários e hexadecimais</h2>
+                            <p id="subject-homework">Robótica e sistemas embarcados - Prof. Gilson Kanashiro</p>
+                        </div>
+                        <div id="desc">
+                            <h3 id="description-homework">
+                                Descrição da atividade: Faça os exercícios pedidos no arquivo em anexo. Após fazer a lógica do programa, monte um esquema no Tinkercad com os componentes indicados no exercício e teste seu código, tire print do sistema funcionando e envie junto ao código no arquivo nomeado "Arquivo para devolver".
+                            </h3>
+                        </div>
+                        <div class="grid">
+                            <a href=""><div class="archive"><img src="/imagens/mini-pdf.png" alt=""><b>Atividade 02 - Exercícios - 4</b></div></a>
+                        </div>
+                    </div>
+                    <div id="direita">
+                        <div id="date"><p>Data de envio: 01/01/2021 <br>Data de entrega: 10/02/2021</p><p>Situação: <span id="situation">Não entregue</span></p></div>
+                        <div id="file">
+                            <form action="">
+                                <div id="borda">
+                                    <label for="homework" class="send-archive">+ Adicionar arquivo</label>
+                                    <input id="homework" name="homework" type="file" onchange="loadFile(event)">
+                                </div>
+                                <input type="submit" name="send-file" id="send-file" class="botao" value="Marcar como concluído">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock principal %}
+
+    {% block scripts %}
+        <script>
+            function loadFile(event){
+                var borda = document.querySelector('#borda');
+                var span = document.createElement('span');
+                span.setAttribute('class', 'send-archive');
+
+                const file = event.target.files[0];
+                span.append(file.name);
+                borda.appendChild(span);
+            }
+        </script>
+    {% endblock scripts %}

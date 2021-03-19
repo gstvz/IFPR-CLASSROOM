@@ -1,48 +1,38 @@
 const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
-
+const nunjucks = require('nunjucks');
 const app = express();
+const router = express.Router();
 
 app.use(express.static('views'));
 app.engine('html', ejs.renderFile);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    res.render('main.html');
+nunjucks.configure('./views', {
+    express: app,
+    noCache: true
 });
 
-app.get('/register', (req, res) => {
-    res.render('register.html');
-})
+const loginRoute = require('./routes/login');
+app.use('/', loginRoute);
 
-app.get('/materias', (req, res) => {
-    res.render('subjects.html');
-})
+const registerRoute = require('./routes/register');
+app.use('/register', registerRoute);
 
-app.get('/videos', (req, res) => {
-    res.render('videos.html');
-})
+const homeworkRoute = require('./routes/homework');
+app.use('/tarefas', homeworkRoute);
 
-app.get('/tarefas', (req, res) => {
-    res.render('homework.html');
-})
+const videosRoute = require ('./routes/videos');
+app.use('/videos', videosRoute);
 
-app.get('/tarefas/:id_tarefa', (req, res) => {
-    const id_tarefa = req.params.id_tarefa;
+const materiasRoute = require('./routes/materias');
+app.use('/materias', materiasRoute);
 
-    if(id_tarefa == 'tarefa_1'){
-        res.render('homework-0.html');
-    }
-    else{
-        res.send('Tarefa não encontrada')
-    }
-})
-
-app.get('/conceitos', (req, res) => {
-    res.render('note.html');
-})
+const conceitosRoute = require('./routes/conceitos');
+app.use('/conceitos', conceitosRoute);
 
 app.listen(3000, () => {
     console.log('> Server running on port: 3000')

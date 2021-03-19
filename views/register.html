@@ -1,104 +1,109 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registre-se</title>
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/register.css">
-    <link rel="stylesheet" href="styles/partials/modal.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">	
-</head>
-<body>
-    <div id="area-cabecalho">
-        <div id="area-logo">
-            <a href="main.html"><img id="iflogo" src="imagens/logo.png" alt=""></a>
-        </div>
-    </div>
-    <div id="area-menu">
-        <div class="botao-menu">
-            <img id="if" src="imagens/if.webp" alt=""><a href="main.html">Home</a>
-        </div>
-        <div class="botao-menu">
-            <img src="imagens/mega fone.png" alt=""><a href="">Extra aula</a>
-        </div>
-        <div class="botao-menu">
-            <img src="imagens/calendar.png" alt=""><a href="">Calendário</a>
-        </div>
-        <div class="botao-menu">
-            <img id="boletim" src="imagens/boletim.png" alt=""><a href="">Boletim</a>
-        </div>
-    </div>
-    <div id="area-principal">
-        <form method="POST">
-            <div id="area-register">
-                <div>
-                    <label for="uname">Usuário:</label>
-                        <input type="text" name="uname">
-                    <label for="email">E-mail:</label>
-                        <input type="email" name="email" id="email">
-                    <label for="senha">Senha:</label>
-                        <input type="password" name="senha" id="senha">
-                     <label for="senha-c">Confirme sua senha:</label>
-                        <input type="password" name="senha-c" id="senha-c">
-                </div>
-                <div id="foto-register">
-                    <span>Adicionar foto de perfil</span><br>
-                    <label for="image">
-                        <img id="image-user" src="imagens/registerfoto.png" alt="">
-                    </label>
-                        <input type="file" id="image" name="image" onchange="loadFile(event)" >
-                </div>
-                <div>
-                    <label for="name">Nome Completo:</label>
-                        <input type="text" name="name">
-                    <label for="">Número de R.A:</label>
-                        <input type="text" name="RA">
-                    <label for="class">Selecione sua turma:</label>
-                        <select name="class" id="class">
-                            <option selected disabled id="fake">Selecione sua turma</option>
-                            <option value="0">4º Mecatrônica</option>
-                            <option value="1">3º Mecatrônica</option>
-                            <option value="2">2º Mecatrônica</option>
-                            <option value="3">1º Mecatrônica</option>
-                            <option value="4">4º Informática</option>
-                            <option value="5">3º Informática</option>
-                            <option value="6">2º Informática</option>
-                            <option value="7">1º Informática</option>
-                            <option value="8">4º Agroindústria</option>
-                            <option value="9">3º Agroindústria</option>
-                            <option value="10">2º Agroindústria</option>
-                            <option value="11">1º Agroindústria</option>
-                        </select>
-                        <div id="date-button">
-                            <div>
-                                <label for="">Data de nascimento</label><br>
-                                    <input type="date" id="date"><br>
-                            </div>
-                            <button type="submit" id="submit">Registrar</button>
-                        </div>
-                </div>
-            </div>
-        </form>
-        <div id="modal" class="hide">
-            <div id="content">
-                <img src="imagens/check.png">
-                <h1>Cadastro concluído!</h1>
-            </div>
-        </div>
-    </div>
-    <script>
-        function loadFile(event){
-            var reader = new FileReader();
-            reader.onload = () => {
-                var image = document.getElementById('image-user');
-                image.src = reader.result;
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        };
+    {% extends "layout.html" %}   
+    
+    {% block title %}
+        <title>Registre-se</title>
+    {% endblock title %}
+    
+    {% block styles %}
+        <link rel="stylesheet" href="/styles/header.css">
+        <link rel="stylesheet" href="/styles/register.css">
+        <link rel="stylesheet" href="/styles/partials/modal.css">
+    {% endblock styles %}
 
-    </script>
-</body>
-</html>
+    {% block header %}
+        <div id="area-cabecalho">
+            <div id="area-logo">
+                <a href="main.html"><img id="iflogo" src="/imagens/logo.png" alt=""></a>
+            </div>
+        </div>
+        <div id="area-menu">
+            <div class="botao-menu">
+                <img id="if" src="/imagens/if.webp" alt=""><a href="main.html">Home</a>
+            </div>
+            <div class="botao-menu">
+                <img src="/imagens/mega fone.png" alt=""><a href="">Extra aula</a>
+            </div>
+            <div class="botao-menu">
+                <img src="/imagens/calendar.png" alt=""><a href="">Calendário</a>
+            </div>
+            <div class="botao-menu">
+                <img id="boletim" src="/imagens/boletim.png" alt=""><a href="">Boletim</a>
+            </div>
+        </div>
+    {% endblock header %}
+
+    {% block principal %}
+        <div id="area-principal">
+            <form method="POST" enctype="multipart/form-data">
+                <div id="area-register">
+                    <div>
+                        <label for="uname">Usuário:</label>
+                            <input type="text" name="uname">
+                        <label for="email">E-mail:</label>
+                            <input type="email" name="email" id="email">
+                        <label for="senha">Senha:</label>
+                            <input type="password" name="senha" id="senha">
+                        <label for="senha-c">Confirme sua senha:</label>
+                            <input type="password" name="senha-c" id="senha-c">
+                    </div>
+                    <div id="foto-register">
+                        <span>Adicionar foto de perfil</span><br>
+                        <label for="image">
+                            <img id="image-user" src="/imagens/registerfoto.png" alt="">
+                        </label>
+                            <input type="file" id="image" name="image" onchange="loadFile(event)" >
+                    </div>
+                    <div>
+                        <label for="name">Nome Completo:</label>
+                            <input type="text" name="name">
+                        <label for="">Número de R.A:</label>
+                            <input type="text" name="RA">
+                        <label for="class">Selecione sua turma:</label>
+                            <select name="class" id="class">
+                                <option selected disabled id="fake">Selecione sua turma</option>
+                                <option value="0">4º Mecatrônica</option>
+                                <option value="1">3º Mecatrônica</option>
+                                <option value="2">2º Mecatrônica</option>
+                                <option value="3">1º Mecatrônica</option>
+                                <option value="4">4º Informática</option>
+                                <option value="5">3º Informática</option>
+                                <option value="6">2º Informática</option>
+                                <option value="7">1º Informática</option>
+                                <option value="8">4º Agroindústria</option>
+                                <option value="9">3º Agroindústria</option>
+                                <option value="10">2º Agroindústria</option>
+                                <option value="11">1º Agroindústria</option>
+                            </select>
+                            <div id="date-button">
+                                <div>
+                                    <label for="">Data de nascimento</label><br>
+                                        <input type="date" id="date"><br>
+                                </div>
+                                <button type="submit" id="submit">Registrar</button>
+                            </div>                    
+                    </div>
+                </div>
+            </form>
+            {% if register %}
+                <div id="modal" class="hide">
+                    <div id="content">
+                        <img src="imagens/check.png">
+                        <h1>Cadastro concluído!</h1>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endblock principal %}
+    
+    {% block scripts %}
+        <script>
+            function loadFile(event){
+                var reader = new FileReader();
+                reader.onload = () => {
+                    var image = document.getElementById('image-user');
+                    image.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            };
+        </script>
+    {% endblock scripts %}
