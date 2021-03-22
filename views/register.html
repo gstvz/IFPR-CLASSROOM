@@ -13,12 +13,12 @@
     {% block header %}
         <div id="area-cabecalho">
             <div id="area-logo">
-                <a href="main.html"><img id="iflogo" src="/imagens/logo.png" alt=""></a>
+                <a href="/"><img id="iflogo" src="/imagens/logo.png" alt=""></a>
             </div>
         </div>
         <div id="area-menu">
             <div class="botao-menu">
-                <img id="if" src="/imagens/if.webp" alt=""><a href="main.html">Home</a>
+                <img id="if" src="/imagens/if.webp" alt=""><a href="/">Home</a>
             </div>
             <div class="botao-menu">
                 <img src="/imagens/mega fone.png" alt=""><a href="">Extra aula</a>
@@ -61,19 +61,11 @@
                         <label for="class">Selecione sua turma:</label>
                             <select name="class" id="class">
                                 <option selected disabled id="fake">Selecione sua turma</option>
-                                <option value="0">4º Mecatrônica</option>
-                                <option value="1">3º Mecatrônica</option>
-                                <option value="2">2º Mecatrônica</option>
-                                <option value="3">1º Mecatrônica</option>
-                                <option value="4">4º Informática</option>
-                                <option value="5">3º Informática</option>
-                                <option value="6">2º Informática</option>
-                                <option value="7">1º Informática</option>
-                                <option value="8">4º Agroindústria</option>
-                                <option value="9">3º Agroindústria</option>
-                                <option value="10">2º Agroindústria</option>
-                                <option value="11">1º Agroindústria</option>
+                                {% for classroom in classrooms %}
+                                    <option value="{{ classroom.classroom_id }}">{{ classroom.classroom_name }}</option>
+                                {% endfor %}
                             </select>
+
                             <div id="date-button">
                                 <div>
                                     <label for="">Data de nascimento</label><br>
@@ -84,6 +76,7 @@
                     </div>
                 </div>
             </form>
+
             {% if register %}
                 <div id="modal" class="hide">
                     <div id="content">
@@ -92,6 +85,7 @@
                     </div>
                 </div>
             {% endif %}
+            
         </div>
     {% endblock principal %}
     

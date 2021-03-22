@@ -34,6 +34,9 @@ app.use('/materias', materiasRoute);
 const conceitosRoute = require('./routes/conceitos');
 app.use('/conceitos', conceitosRoute);
 
+const dbRoute = require('./routes/database');
+app.use('/database', dbRoute);
+
 app.listen(3000, () => {
     console.log('> Server running on port: 3000')
 });

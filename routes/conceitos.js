@@ -1,8 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../database/db');
 
 router.get('/', (req, res) => {
-    res.render('note.html');
+
+    const query = `SELECT
+                        subject_id,
+                        subject_name
+                    FROM subjects`;
+
+    function afterConsultData(error, result){
+        if(error){
+            console.log(error);
+            res.send('Erro na consulta');
+        }
+        else{
+            res.render('note.html', { subjects: result });
+        }
+    }
+
+    db.all(query, afterConsultData);
+
 });
 
 module.exports = router;
