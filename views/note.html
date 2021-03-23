@@ -24,10 +24,10 @@
                     <a href=""><img src="imagens/boletim.png" alt=""> Boletim</a>
                 </div>
                 <div id="perfil">
-                    <span id="nome" class="branco">Gustavo França</span>
+                    <span id="nome" class="branco">{{ user.user_name }}</span>
                     <span class="branco"> | </span>
-                    <span id="turma" class="branco">4º Mecatrônica</span>
-                    <img src="imagens/registerfoto.png" alt="">
+                    <span id="turma" class="branco">{{ user.user_classroom }}</span>
+                    <img src="uploads/{{ user.user_image }}" alt="">
                 </div>
             </div>
         </div>

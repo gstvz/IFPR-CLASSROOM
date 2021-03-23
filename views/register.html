@@ -1,103 +1,104 @@
-    {% extends "layout.html" %}   
+{% extends "layout.html" %}   
     
-    {% block title %}
-        <title>Registre-se</title>
-    {% endblock title %}
+{% block title %}
+    <title>Registre-se</title>
+{% endblock title %}
     
-    {% block styles %}
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/register.css">
-        <link rel="stylesheet" href="/styles/partials/modal.css">
-    {% endblock styles %}
+{% block styles %}
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/register.css">
+    <link rel="stylesheet" href="/styles/partials/modal.css">
+{% endblock styles %}
 
-    {% block header %}
-        <div id="area-cabecalho">
-            <div id="area-logo">
-                <a href="/"><img id="iflogo" src="/imagens/logo.png" alt=""></a>
-            </div>
+{% block header %}
+    <div id="area-cabecalho">
+        <div id="area-logo">
+            <a href="/"><img id="iflogo" src="/imagens/logo.png" alt=""></a>
         </div>
-        <div id="area-menu">
-            <div class="botao-menu">
-                <img id="if" src="/imagens/if.webp" alt=""><a href="/">Home</a>
-            </div>
-            <div class="botao-menu">
-                <img src="/imagens/mega fone.png" alt=""><a href="">Extra aula</a>
-            </div>
-            <div class="botao-menu">
-                <img src="/imagens/calendar.png" alt=""><a href="">Calendário</a>
-            </div>
-            <div class="botao-menu">
-                <img id="boletim" src="/imagens/boletim.png" alt=""><a href="">Boletim</a>
-            </div>
+    </div>
+    <div id="area-menu">
+        <div class="botao-menu">
+            <img id="if" src="/imagens/if.webp" alt=""><a href="/">Home</a>
         </div>
-    {% endblock header %}
+        <div class="botao-menu">
+            <img src="/imagens/mega fone.png" alt=""><a href="">Extra aula</a>
+        </div>
+        <div class="botao-menu">
+            <img src="/imagens/calendar.png" alt=""><a href="">Calendário</a>
+        </div>
+        <div class="botao-menu">
+            <img id="boletim" src="/imagens/boletim.png" alt=""><a href="">Boletim</a>
+        </div>
+    </div>
+{% endblock header %}
 
-    {% block principal %}
-        <div id="area-principal">
-            <form method="POST" enctype="multipart/form-data">
-                <div id="area-register">
-                    <div>
-                        <label for="uname">Usuário:</label>
-                            <input type="text" name="uname">
-                        <label for="email">E-mail:</label>
-                            <input type="email" name="email" id="email">
-                        <label for="senha">Senha:</label>
-                            <input type="password" name="senha" id="senha">
-                        <label for="senha-c">Confirme sua senha:</label>
-                            <input type="password" name="senha-c" id="senha-c">
-                    </div>
-                    <div id="foto-register">
-                        <span>Adicionar foto de perfil</span><br>
-                        <label for="image">
-                            <img id="image-user" src="/imagens/registerfoto.png" alt="">
-                        </label>
-                            <input type="file" id="image" name="image" onchange="loadFile(event)" >
-                    </div>
-                    <div>
-                        <label for="name">Nome Completo:</label>
-                            <input type="text" name="name">
-                        <label for="">Número de R.A:</label>
-                            <input type="text" name="RA">
-                        <label for="class">Selecione sua turma:</label>
-                            <select name="class" id="class">
-                                <option selected disabled id="fake">Selecione sua turma</option>
-                                {% for classroom in classrooms %}
-                                    <option value="{{ classroom.classroom_id }}">{{ classroom.classroom_name }}</option>
-                                {% endfor %}
-                            </select>
-
-                            <div id="date-button">
-                                <div>
-                                    <label for="">Data de nascimento</label><br>
-                                        <input type="date" id="date"><br>
-                                </div>
-                                <button type="submit" id="submit">Registrar</button>
-                            </div>                    
-                    </div>
+{% block principal %}
+    <div id="area-principal">
+        <form method="POST" enctype="multipart/form-data">
+            <div id="area-register">
+                <div>
+                    <label for="login">Usuário:</label>
+                        <input type="text" name="login">
+                    <label for="email">E-mail:</label>
+                        <input type="email" name="email" id="email">
+                    <label for="password">Senha:</label>
+                        <input type="password" name="password" id="senha">
+                    <label for="senha-c">Confirme sua senha:</label>
+                        <input type="password" name="senha-c" id="senha-c">
                 </div>
-            </form>
-
-            {% if register %}
-                <div id="modal" class="hide">
-                    <div id="content">
-                        <img src="imagens/check.png">
-                        <h1>Cadastro concluído!</h1>
-                    </div>
+                <div id="foto-register">
+                    <span>Adicionar foto de perfil</span><br>
+                    <label for="image">
+                        <img id="image-user" src="/imagens/registerfoto.png" alt="">
+                    </label>
+                        <input type="file" id="image" name="image" onchange="loadFile(event)" >
                 </div>
-            {% endif %}
-            
-        </div>
-    {% endblock principal %}
+                <div>
+                    <label for="name">Nome Completo:</label>
+                        <input type="text" name="name">
+                    <label for="">Número de R.A:</label>
+                        <input type="text" name="ra">
+                    <label for="class">Selecione sua turma:</label>
+                        <select name="classroom_id" id="class">
+                            <option selected disabled id="fake">Selecione sua turma</option>
+                            {% for classroom in classrooms %}
+                                <option value="{{ classroom.classroom_id }}">{{ classroom.classroom_name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <div id="date-button">
+                            <div>
+                                <label for="birthday">Data de nascimento</label><br>
+                                    <input type="date" id="date" name="birthday"><br>
+                            </div>
+                            <button type="submit" id="submit">Registrar</button>
+                        </div>                    
+                </div>
+            </div>
+        </form>
+
+        {% if register %}
+            <div id="modal">
+                <div>
+                    <img src="imagens/check.png" alt="">
+                    <h1>Cadastro concluído!</h1>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock principal %}
     
-    {% block scripts %}
-        <script>
-            function loadFile(event){
-                var reader = new FileReader();
-                reader.onload = () => {
-                    var image = document.getElementById('image-user');
-                    image.src = reader.result;
-                };
-                reader.readAsDataURL(event.target.files[0]);
+{% block scripts %}
+    <script>
+        function loadFile(event){
+            var reader = new FileReader();
+            reader.onload = () => {
+                var image = document.getElementById('image-user');
+                image.src = reader.result;
             };
-        </script>
-    {% endblock scripts %}
+            reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
+{% endblock scripts %}

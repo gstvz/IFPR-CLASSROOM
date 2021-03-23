@@ -24,10 +24,10 @@
                     <a href=""><img src="/imagens/boletim.png" alt=""> Boletim</a>
                 </div>
                 <div id="perfil">
-                    <span id="nome" class="branco">Gustavo França</span>
+                    <span id="nome" class="branco">{{ user.user_name }}</span>
                     <span class="branco"> | </span>
-                    <span id="turma" class="branco">4º Mecatrônica</span>
-                    <img src="/imagens/registerfoto.png" alt="">
+                    <span id="turma" class="branco">{{ user.user_classroom }}</span>
+                    <img src="uploads/{{user.user_img}}" alt="">
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                     <div id="direita">
                         <div id="date"><p>Data de envio: {{ homework.created_at }} <br>Data de entrega: {{ homework.delivery_date }}</p><p>Situação: <span id="situation">Não entregue</span></p></div>
                         <div id="file">
-                            <form action="">
+                            <form action="/tarefas/{{ homeworks.homework_id }}" method="POST" enctype="multipart/form-data">
                                 <div id="borda">
                                     <label for="homework" class="send-archive">+ Adicionar arquivo</label>
                                     <input id="homework" name="homework" type="file" onchange="loadFile(event)">

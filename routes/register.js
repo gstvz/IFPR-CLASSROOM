@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const db = require('../database/db');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -37,21 +39,42 @@ router.get('/', (req, res) => {
 
 router.post('/', upload.single('image'), (req, res) => {
 
-    const query = `INSERT INTO user (name, email) VALUES (?,?)`;
-
-    const values = [req.body.name, req.body.email];
-
-    function afterInsertData(error){
-        if(error){
-            res.send(error);
+    bcrypt.hash(req.body.password, 10, (errorHash, hash) => {
+        if(errorHash){
+            req.send('Erro no cadastro');
         }
         else{
-            res.render('register.html', { register: true });
+            const query = `INSERT INTO users (
+                                login,
+                                email,
+                                password,
+                                name,
+                                birthday,
+                                classroom_id,
+                                ra,
+                                image
+                            ) VALUES (?,?,?,?,?,?,?,?)`;            
+            const values = [
+                            req.body.login,
+                            req.body.email,
+                            hash,
+                            req.body.name,
+                            req.body.birthday,
+                            req.body.classroom_id,
+                            req.body.ra,
+                            req.file.filename
+                            ];            
+            function afterInsertData(error){
+                if(error){
+                    res.send(error);
+                }
+                else{
+                    res.render('register.html', { register: true });
+                }
+            }
+            db.run(query, values, afterInsertData);
         }
-    }
-
-    db.run(query, values, afterInsertData);
-
+    });
 });
 
 module.exports = router;

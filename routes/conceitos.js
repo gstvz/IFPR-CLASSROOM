@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../database/db');
+const token = require('../middleware/token');
 
-router.get('/', (req, res) => {
+router.get('/', token.required, (req, res) => {
 
     const query = `SELECT
                         subject_id,
                         subject_name
-                    FROM subjects`;
+                    FROM subjects
+                    WHERE classroom_id = ?`;
+
+    const value = [req.user.user_classroom_id];
 
     function afterConsultData(error, result){
         if(error){
@@ -15,11 +19,11 @@ router.get('/', (req, res) => {
             res.send('Erro na consulta');
         }
         else{
-            res.render('note.html', { subjects: result });
+            res.render('note.html', { subjects: result, user: req.user });
         }
     }
 
-    db.all(query, afterConsultData);
+    db.all(query, value, afterConsultData);
 
 });
 

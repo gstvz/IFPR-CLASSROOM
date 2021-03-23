@@ -61,9 +61,6 @@ db.serialize(() => {
         FOREIGN KEY (student_id) REFERENCES users (id)
             ON DELETE CASCADE ON UPDATE NO ACTION
     )`);
-
-        
-
 });
 
 module.exports = db;
