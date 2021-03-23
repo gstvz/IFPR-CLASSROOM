@@ -61,8 +61,7 @@ router.post('/', token.required, (req,res) => {
                     console.log(error2);
                     res.send('Erro na consulta');
                 }
-                else{
-                    console.log(result);
+                else{                    
                     res.render('subjects.html', { subjects: result2, user: req.user, homeworks: result});
                 }
             }
