@@ -43,25 +43,6 @@ router.get('/', token.required, (req, res) => {
 
             values = [req.user.user_id];
         }
-/*         
-        if(filter == "mais-antigas"){
-            query = `SELECT
-                        homeworks.title,
-                        homeworks.created_at,
-                        homeworks.delivery_date,
-                        homeworks.homework_id,
-                        subjects.subject_name,
-                    FROM
-                        homeworks
-                        INNER JOIN subjects ON homeworks.subject_id = subjects.subject_id
-                    WHERE
-                        homeworks.homework_created_at = ?
-                    LIMIT 10`;
-            values = [req.user.user_id]
-        }
-        if(filter == "menor-tempo"){
-
-        } */
     } else{
         query = `SELECT 
                         homeworks.title,
