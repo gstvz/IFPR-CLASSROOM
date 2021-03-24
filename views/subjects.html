@@ -18,7 +18,7 @@
                     </a>
                 </div>
                 <div id="menu">
-                    <a href="">Home</a>
+                    <a href=""><img src="/imagens/if.webp" alt=""> Home</a>
                     <a href=""><img src="imagens/mega fone.png" alt=""> Extra Aula</a>
                     <a href=""><img src="imagens/calendar.png" alt=""> Calendário</a>
                     <a href=""><img src="imagens/boletim.png" alt=""> Boletim</a>
@@ -53,15 +53,20 @@
                     <button type="submit" id="filter">Filtrar</button>
 
                 </form>
+
                 <div class="scroll">
+
+            {% for homework in homeworks %}
+                
+                
                     <div id="linha-0" class="linha">
                         <div class="conteudo">
                             <div id="content" class="content">
                                 <div>
-                                    <h3 id="homework-title-0" class="homework-title"> Robótica e sistemas embarcados</h3>
-                                    <h4 id="homework-desc-0" class="homework-desc">3º Trimestre - binários e hexadecimais</h4>
+                                    <h3 id="homework-title-0" class="homework-title"> {{ homework.subject_name }} </h3>
+                                    <h4 id="homework-desc-0" class="homework-desc"> {{ homework.name }} </h4>
                                 </div>
-                                <h4 id="description-0" class="description">Descrição da atividade:</h4>
+                                <h4 id="description-0" class="description"> {{ homework.description }}</h4>
                                 <div id="homework-quant-0" class="homework-quant">
                                     03 materiais em anexo
                                 </div>
@@ -73,7 +78,7 @@
                                     Situação: <span id="situation-0" class="situation">Não entregue</span>
                                 </b>
                             </div>
-                        </div>
+                        </div>      
                         <a href="">
                             <div id="video-0" class="video">
                                 <div class="text-video">
@@ -85,6 +90,7 @@
                             </div>
                         </a>
                     </div>
+            {% endfor %}
                 </div>
             </div>
         </div>
